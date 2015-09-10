@@ -2,7 +2,6 @@ package com.tesis.alejofila.centrocomercial;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -10,7 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -18,17 +16,16 @@ import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParsePush;
 import com.parse.ParseUser;
-import com.parse.PushService;
 import com.parse.SaveCallback;
 import com.tesis.alejofila.centrocomercial.helper.OfertaAdapter;
 import com.tesis.alejofila.centrocomercial.http.Constants;
-import com.tesis.alejofila.centrocomercial.model.InteresRopaFemenina;
+import com.tesis.alejofila.centrocomercial.model.Interes;
+import com.tesis.alejofila.centrocomercial.model.InteresesFactory;
 import com.tesis.alejofila.centrocomercial.model.Oferta;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by tales on 4/09/15.
@@ -38,9 +35,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private ListView listView;
     private ArrayList<Oferta> listOferta = new ArrayList<>();
     private OfertaAdapter adapter;
-    private ImageView type1, type2;
+    private ImageView type1, type8;
     private boolean type1_activated;
     private boolean type2_activated;
+    private ArrayList<Interes> listaDeInteres = new ArrayList<>();
 
 
     @Override
@@ -52,8 +50,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         type2_activated = false;
         setTitle(getIntent().getStringExtra(Constants.EMAIL));
 
-        type2 = (ImageView) findViewById(R.id.type_2);
-        type2.setOnClickListener(this);
+        type8 = (ImageView) findViewById(R.id.type_8);
+        type8.setOnClickListener(this);
         type1 = (ImageView) findViewById(R.id.type_1);
         type1.setOnClickListener(this);
         cargaIntereses();
@@ -75,6 +73,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             while (itChannels.hasNext()) {
                 String channel = itChannels.next().toString();
                 Log.i(TAG,"channel subscribed: "+ channel);
+                listaDeInteres.add(InteresesFactory.makeInterest(channel));
                 verificaChannel(channel);
             }
         }
@@ -83,7 +82,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private void verificaChannel(String channel) {
         switch (channel) {
             case "camisetas":
-                type2.setImageResource(R.drawable.ic_type_clothes);
+                type8.setImageResource(R.drawable.ic_type_clothes);
                 type2_activated = true;
                 break;
             case "video_games":
@@ -142,21 +141,21 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 type_1Function();
                 //InteresRopaFemenina ropaFemenina = new InteresRopaFemenina();
                 break;
-            case R.id.type_2:
-                type_2Function();
+            case R.id.type_8:
+                type_8Function();
                 break;
 
         }
 
     }
 
-    private void type_2Function() {
+    private void type_8Function() {
         if (!type2_activated) {
-            type2.setImageResource(R.drawable.ic_type_clothes);
+            type8.setImageResource(R.drawable.ic_type_clothes);
             Log.i(TAG, "Subscribiendo");
             subscribeTo("camisetas");
         } else {
-            type2.setImageResource(R.drawable.ic_type_clothes_2);
+            type8.setImageResource(R.drawable.ic_type_clothes_2);
             Log.i(TAG, "Desubscribiendo");
 
             unsubscribeTo("camisetas");
