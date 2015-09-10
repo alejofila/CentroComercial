@@ -22,6 +22,7 @@ import com.parse.PushService;
 import com.parse.SaveCallback;
 import com.tesis.alejofila.centrocomercial.helper.OfertaAdapter;
 import com.tesis.alejofila.centrocomercial.http.Constants;
+import com.tesis.alejofila.centrocomercial.model.InteresRopaFemenina;
 import com.tesis.alejofila.centrocomercial.model.Oferta;
 
 import java.util.ArrayList;
@@ -139,6 +140,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.type_1:
                 type_1Function();
+                //InteresRopaFemenina ropaFemenina = new InteresRopaFemenina();
                 break;
             case R.id.type_2:
                 type_2Function();
@@ -191,7 +193,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(HomeActivity.this, "Hubo un error al actualizar tus interes", Toast.LENGTH_SHORT).show();
                 else
                     Toast.makeText(HomeActivity.this, "Tus intereses han sido actualizados", Toast.LENGTH_SHORT).show();
-
             }
         });
     }

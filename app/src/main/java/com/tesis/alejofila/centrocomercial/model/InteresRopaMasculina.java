@@ -1,16 +1,16 @@
 package com.tesis.alejofila.centrocomercial.model;
 
+import com.tesis.alejofila.centrocomercial.R;
+
 /**
  * Created by alejofila on 8/09/15.
  */
 public class InteresRopaMasculina extends Interes{
 
-
-
     public InteresRopaMasculina(){
         setChannel("ropa_masculina");
-        setIcono1(0x0);
-        setIcono2(0x2);
+        setIcono1(R.drawable.ic_type_clothes);
+        setIcono2(R.drawable.ic_type_clothes_2);
     }
 
     @Override
