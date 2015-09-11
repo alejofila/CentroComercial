@@ -23,7 +23,7 @@
                 android:gravity="center"
                 android:text="Mis Intereses"
                 android:textAllCaps="false"
-                android:textColor="@color/abc_secondary_text_material_dark"
+                android:textColor="@color/abc_secondary_text_material_light"
                 android:textSize="35sp" >
             </TextView>
     </LinearLayout>
@@ -89,7 +89,7 @@
             android:layout_weight="1"
             android:clickable="true"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_type_women_dress_2" />
+            android:src="@drawable/ic_type_women_shoe_2" />
 
         <ImageView
             android:id="@+id/type_6"
@@ -98,7 +98,7 @@
             android:layout_weight="1"
             android:clickable="true"
             android:scaleType="fitCenter"
-            android:src="@drawable/prueba" />
+            android:src="@drawable/ic_type_women_dress_2" />
     </LinearLayout>
 
     <LinearLayout
