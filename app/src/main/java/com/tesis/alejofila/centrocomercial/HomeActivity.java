@@ -49,11 +49,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         type1_activated = false;
         type2_activated = false;
         setTitle(getIntent().getStringExtra(Constants.EMAIL));
-
-        type8 = (ImageView) findViewById(R.id.type_8);
-        type8.setOnClickListener(this);
         type1 = (ImageView) findViewById(R.id.type_1);
         type1.setOnClickListener(this);
+        type8 = (ImageView) findViewById(R.id.type_8);
+        type8.setOnClickListener(this);
         cargaIntereses();
 
     }
@@ -73,21 +72,27 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             while (itChannels.hasNext()) {
                 String channel = itChannels.next().toString();
                 Log.i(TAG,"channel subscribed: "+ channel);
-                listaDeInteres.add(InteresesFactory.makeInterest(channel));
-                verificaChannel(channel);
+                Interes interes = InteresesFactory.makeInterest(channel);
+                listaDeInteres.add(interes);
+                verificaChannel(interes);
             }
         }
     }
 
-    private void verificaChannel(String channel) {
-        switch (channel) {
-            case "camisetas":
-                type8.setImageResource(R.drawable.ic_type_clothes);
-                type2_activated = true;
+    private void verificaChannel(Interes interes) {
+
+        switch (interes.getChannel()) {
+            case InteresesFactory.INTERES_VIDEO_GAMES:
+                type1.setImageResource(interes.getIcono1());
+                interes.setActivado(true);
                 break;
-            case "video_games":
-                type1.setImageResource(R.drawable.ic_type_video_games);
-                type1_activated = true;
+            case InteresesFactory.INTERES_TECNOLOGIA:
+                type2.setImageResource(interes.getIcono1());
+                interes.setActivado(true);
+                break;
+            case InteresesFactory.INTERES_ROPA_MASCULINA:
+                type8.setImageResource(interes.getIcono1());
+                interes.setActivado(true);
                 break;
         }
     }

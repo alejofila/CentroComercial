@@ -15,6 +15,7 @@ public class  Interes {
         this.channel = channel;
         this.icono1 = icono1;
         this.icono2 = icono2;
+        this.activado = false;
     }
 
     public String getChannel() {
