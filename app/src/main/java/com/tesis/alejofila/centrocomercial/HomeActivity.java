@@ -24,6 +24,7 @@ import com.tesis.alejofila.centrocomercial.model.InteresesFactory;
 import com.tesis.alejofila.centrocomercial.model.Oferta;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -40,6 +41,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private boolean type2_activated;
     private ArrayList<Interes> listaDeInteres = new ArrayList<>();
 
+    /////EL HASHMAP
+    private HashMap<String, ImageView> types = new HashMap<String, ImageView>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         type1_activated = false;
         type2_activated = false;
         setTitle(getIntent().getStringExtra(Constants.EMAIL));
+        ////////// AQUI SUPONGO QUE VOY AÑADIENDO LOS INTERESES Y LA IMAGEN PA LUEGO CARGARLA
+        types.put(InteresesFactory.INTERES_VIDEO_GAMES, (ImageView) findViewById(R.id.type_1));
         type1 = (ImageView) findViewById(R.id.type_1);
         type1.setOnClickListener(this);
         type8 = (ImageView) findViewById(R.id.type_8);
@@ -80,6 +85,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void verificaChannel(Interes interes) {
+
 
         switch (interes.getChannel()) {
             case InteresesFactory.INTERES_VIDEO_GAMES:
