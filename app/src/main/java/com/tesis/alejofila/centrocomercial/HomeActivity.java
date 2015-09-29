@@ -34,7 +34,6 @@ import java.util.List;
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = HomeActivity.class.getSimpleName();
-    private ListView listView;
     private ArrayList<Oferta> listOferta = new ArrayList<>();
     private ArrayList<ImageView> types = new ArrayList<>();
     private ArrayList<Interes> listaDeInteres = new ArrayList<>();
@@ -199,7 +198,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 icon.setImageResource(interesl.getIcono1());
                 unsubscribeTo(interesl.getChannel().toString());
                 auxInteres = interesl;
-                Log.i(TAG, "Desuscribiendo");
+                Log.i(TAG, "Desuscribiendo" + interes);
                 finded = true;
             }
         }
@@ -209,7 +208,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             icon.setImageResource(nuevo.getIcono2());
             subscribeTo(nuevo.getChannel().toString());
             listaDeInteres.add(nuevo);
-            Log.i(TAG, "Suscribiendo");
+            Log.i(TAG, "Suscribiendo" + interes);
         }
     }
 
