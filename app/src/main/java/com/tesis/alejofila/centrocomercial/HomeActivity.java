@@ -29,37 +29,38 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Created by tales on 4/09/15.
+ * Created by alejofila on 4/09/15.
  */
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
+
     private static final String TAG = HomeActivity.class.getSimpleName();
     private ListView listView;
     private ArrayList<Oferta> listOferta = new ArrayList<>();
-    private OfertaAdapter adapter;
-    private ImageView type1, type8;
-    private boolean type1_activated;
-    private boolean type2_activated;
+    private ArrayList<ImageView> types = new ArrayList<>();
     private ArrayList<Interes> listaDeInteres = new ArrayList<>();
 
-    /////EL HASHMAP
-    private HashMap<String, ImageView> types = new HashMap<String, ImageView>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        type1_activated = false;
-        type2_activated = false;
         setTitle(getIntent().getStringExtra(Constants.EMAIL));
-        ////////// AQUI SUPONGO QUE VOY AÑADIENDO LOS INTERESES Y LA IMAGEN PA LUEGO CARGARLA
-        types.put(InteresesFactory.INTERES_VIDEO_GAMES, (ImageView) findViewById(R.id.type_1));
-        type1 = (ImageView) findViewById(R.id.type_1);
-        type1.setOnClickListener(this);
-        type8 = (ImageView) findViewById(R.id.type_8);
-        type8.setOnClickListener(this);
+        loadIcons();
         cargaIntereses();
+    }
 
+    private void loadIcons(){
+        //cargo los imageViews
+        int [] icons = {R.id.type_1, R.id.type_2, R.id.type_3,
+                R.id.type_4, R.id.type_5, R.id.type_6, R.id.type_7, R.id.type_8};
+        for(int i = 0; i < 8; i++){
+            types.add((ImageView)findViewById(icons[i]));
+        }
+        //Cargo los listeners
+        Iterator <ImageView> imagenes = types.iterator();
+        while (imagenes.hasNext()){
+            imagenes.next().setOnClickListener(this);
+        }
     }
 
     private void cargaIntereses() {
@@ -85,30 +86,44 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void verificaChannel(Interes interes) {
-
-
         switch (interes.getChannel()) {
             case InteresesFactory.INTERES_VIDEO_GAMES:
-                type1.setImageResource(interes.getIcono1());
+                types.get(0).setImageResource(interes.getIcono2());
                 interes.setActivado(true);
                 break;
             case InteresesFactory.INTERES_TECNOLOGIA:
-                type2.setImageResource(interes.getIcono1());
+                types.get(1).setImageResource(interes.getIcono2());
+                interes.setActivado(true);
+                break;
+            case InteresesFactory.INTERES_COMIDA_RAPIDA:
+                types.get(2).setImageResource(interes.getIcono2());
+                interes.setActivado(true);
+                break;
+            case InteresesFactory.INTERES_JOYAS:
+                types.get(3).setImageResource(interes.getIcono2());
+                interes.setActivado(true);
+                break;
+            case InteresesFactory.INTERES_ZAPATOS_MUJER:
+                types.get(4).setImageResource(interes.getIcono2());
+                interes.setActivado(true);
+                break;
+            case InteresesFactory.INTERES_ROPA_MUJER:
+                types.get(5).setImageResource(interes.getIcono2());
+                interes.setActivado(true);
+                break;
+            case InteresesFactory.INTERES_ZAPATOS_HOMBRE:
+                types.get(6).setImageResource(interes.getIcono2());
                 interes.setActivado(true);
                 break;
             case InteresesFactory.INTERES_ROPA_MASCULINA:
-                type8.setImageResource(interes.getIcono1());
+                types.get(7).setImageResource(interes.getIcono2());
                 interes.setActivado(true);
                 break;
         }
     }
 
-    private boolean userHasNoSubscriptions() {
-        return
-                false;
-    }
 
-    @Override
+    /*@Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         String producto = intent.getStringExtra(Constants.PRODUCT_NAME);
@@ -118,7 +133,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         Oferta oferta = new Oferta(producto, precio, url_imagen);
         listOferta.add(0, oferta);
         adapter.notifyDataSetChanged();
-    }
+    }*/
 
 
     @Override
@@ -149,51 +164,55 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.type_1:
-                type_1Function();
-                //InteresRopaFemenina ropaFemenina = new InteresRopaFemenina();
+                type_8Function(InteresesFactory.INTERES_VIDEO_GAMES, types.get(0));
+                break;
+            case R.id.type_2:
+                type_8Function(InteresesFactory.INTERES_TECNOLOGIA, types.get(1));
+                break;
+            case R.id.type_3:
+                type_8Function(InteresesFactory.INTERES_COMIDA_RAPIDA, types.get(2));
+                break;
+            case R.id.type_4:
+                type_8Function(InteresesFactory.INTERES_JOYAS, types.get(3));
+                break;
+            case R.id.type_5:
+                type_8Function(InteresesFactory.INTERES_ZAPATOS_MUJER, types.get(4));
+                break;
+            case R.id.type_6:
+                type_8Function(InteresesFactory.INTERES_ROPA_MUJER, types.get(5));
+                break;
+            case R.id.type_7:
+                type_8Function(InteresesFactory.INTERES_ZAPATOS_HOMBRE, types.get(6));
                 break;
             case R.id.type_8:
-                type_8Function();
+                type_8Function(InteresesFactory.INTERES_ROPA_MASCULINA, types.get(7));
                 break;
-
         }
 
     }
 
-    private void type_8Function() {
-        if (!type2_activated) {
-            type8.setImageResource(R.drawable.ic_type_clothes);
-            Log.i(TAG, "Subscribiendo");
-            subscribeTo("camisetas");
-        } else {
-            type8.setImageResource(R.drawable.ic_type_clothes_2);
-            Log.i(TAG, "Desubscribiendo");
-
-            unsubscribeTo("camisetas");
-
-
+    private void type_8Function(String interes, ImageView icon) {
+        Boolean finded = false;
+        Interes auxInteres = null;
+        for (Interes interesl : listaDeInteres) {
+            if (interesl.getChannel().toString() == interes) {
+                icon.setImageResource(interesl.getIcono1());
+                unsubscribeTo(interesl.getChannel().toString());
+                auxInteres = interesl;
+                Log.i(TAG, "Desuscribiendo");
+                finded = true;
+            }
         }
-        type2_activated = !type2_activated;
-
+        listaDeInteres.remove(auxInteres);
+        if (finded != true) {
+            Interes nuevo = InteresesFactory.makeInterest(interes);
+            icon.setImageResource(nuevo.getIcono2());
+            subscribeTo(nuevo.getChannel().toString());
+            listaDeInteres.add(nuevo);
+            Log.i(TAG, "Suscribiendo");
+        }
     }
 
-
-    private void type_1Function() {
-        if (!type1_activated) {
-            type1.setImageResource(R.drawable.ic_type_video_games);
-            Log.i(TAG, "Subscribiendo");
-            subscribeTo("video_games");
-        } else {
-            type1.setImageResource(R.drawable.ic_type_video_game_2);
-            Log.i(TAG, "Desubscribiendo");
-
-            unsubscribeTo("video_games");
-
-
-        }
-        type1_activated = !type1_activated;
-
-    }
 
     private void unsubscribeTo(String channel) {
         ParsePush.unsubscribeInBackground(channel, new SaveCallback() {
