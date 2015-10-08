@@ -1,5 +1,6 @@
 package com.tesis.alejofila.centrocomercial.receiver;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -35,8 +36,8 @@ public class CustomPushReceiver extends ParsePushBroadcastReceiver {
     @Override
     protected void onPushReceive(Context context, Intent intent) {
         super.onPushReceive(context, intent);
-        if(!isParseUserLogin())
-            return ;
+        if (!isParseUserLogin())
+            return;
         if (intent == null)
             return;
         try {
@@ -47,12 +48,12 @@ public class CustomPushReceiver extends ParsePushBroadcastReceiver {
             parseIntent = intent;
             int notificationType = determineNotificationType(json);
 
-            switch (notificationType){
+            switch (notificationType) {
                 case Constants.NOTIFICATION_TYPE_SINGLE:
                     parseSingleJSON(context, json);
                     break;
                 case Constants.NOTIFICATION_TYPE_MULTIPLE:
-                    parseMultipleJSON(context,json);
+                    parseMultipleJSON(context, json);
                     break;
                 default:
                     break;
@@ -65,7 +66,7 @@ public class CustomPushReceiver extends ParsePushBroadcastReceiver {
 
     private boolean isParseUserLogin() {
         ParseUser user = ParseUser.getCurrentUser();
-        if(user != null)
+        if (user != null)
             return true;
         else
             return false;
@@ -76,14 +77,19 @@ public class CustomPushReceiver extends ParsePushBroadcastReceiver {
     }
 
     private void parseSingleJSON(Context context, JSONObject json) {
-        Log.i(TAG,"ENTERING in parseSingleJSON");
+        Log.i(TAG, "ENTERING in parseSingleJSON");
         try {
             boolean isBackground = json.getBoolean("is_background");
             JSONObject data = json.getJSONObject("data");
-            Bundle  extractedParams = JsonUtils.detailedJsonToBundle(data);
+            /**
+             * ESTO ES TEMPORAL REFACTORIZAR
+             */
+            String date  = json.getString(Constants.PRODUCT_TO_DATE);
+
+            Bundle extractedParams = JsonUtils.detailedJsonToBundle(data);
+            extractedParams.putString(Constants.PRODUCT_TO_DATE,date);
             String title = json.getString("titulo");
             String message = json.getString("message");
-
 
 
             if (!isBackground) {
@@ -92,7 +98,6 @@ public class CustomPushReceiver extends ParsePushBroadcastReceiver {
                 showNotificationMessage(context, title, message, resultIntent);
 
             }
-
 
 
         } catch (JSONException e) {
@@ -133,10 +138,10 @@ public class CustomPushReceiver extends ParsePushBroadcastReceiver {
             boolean isBackground = json.getBoolean("is_background");
             JSONObject data = json.getJSONObject("data");
             String title = json.getString("title");
-            Log.i(TAG,"this should be the title "+title);
+            Log.i(TAG, "this should be the title " + title);
 
             String message = json.getString("message");
-            Log.i(TAG,"this should be the message "+message);
+            Log.i(TAG, "this should be the message " + message);
 
 
             if (!isBackground) {

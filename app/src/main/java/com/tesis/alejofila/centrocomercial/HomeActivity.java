@@ -34,7 +34,6 @@ import java.util.List;
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = HomeActivity.class.getSimpleName();
-    private ArrayList<Oferta> listOferta = new ArrayList<>();
     private ArrayList<ImageView> types = new ArrayList<>();
     private ArrayList<Interes> listaDeInteres = new ArrayList<>();
 
@@ -67,6 +66,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         Iterator itChannels = null;
         try {
             List l = ParseInstallation.getCurrentInstallation().getList("channels");
+
             if (l != null)
                 itChannels = l.iterator();
         }
@@ -78,8 +78,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 String channel = itChannels.next().toString();
                 Log.i(TAG,"channel subscribed: "+ channel);
                 Interes interes = InteresesFactory.makeInterest(channel);
-                listaDeInteres.add(interes);
-                verificaChannel(interes);
+
+                if(interes != null) {
+                    listaDeInteres.add(interes);
+                    verificaChannel(interes);
+                }
             }
         }
     }
@@ -90,7 +93,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 types.get(0).setImageResource(interes.getIcono2());
                 interes.setActivado(true);
                 break;
-            /*
+
             case InteresesFactory.INTERES_TECNOLOGIA:
                 types.get(1).setImageResource(interes.getIcono2());
                 interes.setActivado(true);
@@ -115,10 +118,12 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 types.get(6).setImageResource(interes.getIcono2());
                 interes.setActivado(true);
                 break;
-                */
+
             case InteresesFactory.INTERES_ROPA_MASCULINA:
                 types.get(7).setImageResource(interes.getIcono2());
                 interes.setActivado(true);
+                break;
+            default:
                 break;
         }
     }

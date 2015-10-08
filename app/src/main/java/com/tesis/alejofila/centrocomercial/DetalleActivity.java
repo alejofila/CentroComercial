@@ -51,8 +51,6 @@ public class DetalleActivity extends AppCompatActivity {
             String productOldPrice = b.getString(Constants.PRODUCT_OLD_PRICE);
             String productStore = b.getString(Constants.PRODUCT_STORE);
             String fecha = "Valido hasta "+b.getString(Constants.PRODUCT_TO_DATE);
-
-
             setProductData(productName, productPrice, productOldPrice, productImage, productStore,fecha);
         }
 

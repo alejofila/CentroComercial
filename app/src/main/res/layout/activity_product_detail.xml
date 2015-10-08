@@ -51,16 +51,30 @@
             android:textSize="20sp"
             android:gravity="center"
              />
-        <TextView
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:text="$40.000"
             android:layout_weight="1"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:textColor="@color/accent"
-            android:id="@+id/precio_product_detail"
-            />
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="$40.000"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:textColor="@color/accent"
+                android:id="@+id/precio_product_detail"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:textSize="12sp"
+                android:text="IVA incluido"
+                android:layout_toRightOf="@+id/precio_product_detail"
+                android:layout_alignBaseline="@+id/precio_product_detail"/>
+        </RelativeLayout>
+
 
     </LinearLayout>
 
@@ -78,15 +92,33 @@
             android:textSize="20sp"
             android:gravity="center"
             />
-        <TextView
+
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:text="$40.000"
-            android:layout_weight="1"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:id="@+id/original_precio_product_detail"
-            android:textColor="@color/bg_register" />
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="$40.000"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:id="@+id/original_precio_product_detail"
+                android:textColor="@color/bg_register" />
+
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:textSize="12sp"
+                android:text="IVA incluido"
+                android:layout_toRightOf="@+id/original_precio_product_detail"
+                android:layout_alignBaseline="@+id/original_precio_product_detail"/>
+
+        </RelativeLayout>
 
     </LinearLayout>
     <TextView
