@@ -86,9 +86,17 @@
             android:textSize="20sp"
             android:gravity="center"
             android:id="@+id/original_precio_product_detail"
-            android:textColor="@color/bg_register"/>
+            android:textColor="@color/bg_register" />
 
     </LinearLayout>
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_fecha_valida"
+        android:text="Valido hasta"
+        android:textSize="20sp"
+        android:gravity="center"
+        />
 
 
 </LinearLayout>

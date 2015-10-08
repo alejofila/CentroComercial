@@ -24,6 +24,7 @@ public class JsonUtils {
             b.putString(Constants.PRODUCT_PRICE, jObj.getString(Constants.PRODUCT_PRICE));
             b.putString(Constants.PRODUCT_OLD_PRICE,jObj.getString(Constants.PRODUCT_OLD_PRICE));
             b.putString(Constants.PRODUCT_STORE,jObj.getString(Constants.PRODUCT_STORE));
+            b.putString(Constants.PRODUCT_TO_DATE,jObj.getString(Constants.PRODUCT_TO_DATE));
         }
         catch (JSONException e){
             Log.e(TAG, "ERROR PARSEANDO JSON");

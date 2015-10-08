@@ -142,6 +142,8 @@ public class MainActivity extends AccountAuthenticatorActivity implements View.O
 
 
         final EditText input = new EditText(this);
+        if(edtEmail.getText().toString() != null || edtEmail.getText().toString() != "")
+            input.setText(edtEmail.getText().toString());
         alert.setView(input);
 
         DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {

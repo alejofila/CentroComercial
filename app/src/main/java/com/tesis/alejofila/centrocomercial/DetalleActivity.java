@@ -18,13 +18,15 @@ import java.util.Iterator;
  */
 public class DetalleActivity extends AppCompatActivity {
 
-    private static final String TAG =DetalleActivity.class.getSimpleName();
+    private static final String TAG = DetalleActivity.class.getSimpleName();
 
     ImageView imagen;
     TextView txtProductName;
     TextView txtProductPrice;
     TextView txtProductOldPrice;
     TextView txtProductStore;
+    TextView txtFecha;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,33 +34,37 @@ public class DetalleActivity extends AppCompatActivity {
         this.setTitle("DETALLE ACTIVITY");
         setContentView(R.layout.activity_product_detail);
         imagen = (ImageView) findViewById(R.id.imagen_product_detail);
-        txtProductName =(TextView) findViewById(R.id.txt_product_name);
+        txtProductName = (TextView) findViewById(R.id.txt_product_name);
         txtProductPrice = (TextView) findViewById(R.id.precio_product_detail);
-        txtProductOldPrice =(TextView) findViewById(R.id.original_precio_product_detail);
-        txtProductStore =(TextView) findViewById(R.id.store_product);
+        txtProductOldPrice = (TextView) findViewById(R.id.original_precio_product_detail);
+        txtProductStore = (TextView) findViewById(R.id.store_product);
+        txtFecha        = (TextView) findViewById(R.id.txt_fecha_valida);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        if(getIntent() != null){
+
+        if (getIntent() != null) {
             Bundle b = getIntent().getExtras();
 
             String productName = b.getString(Constants.PRODUCT_NAME);
             String productImage = b.getString(Constants.PRODUCT_IMAGE);
             String productPrice = b.getString(Constants.PRODUCT_PRICE);
-            String productOldPrice =b.getString(Constants.PRODUCT_OLD_PRICE);
+            String productOldPrice = b.getString(Constants.PRODUCT_OLD_PRICE);
             String productStore = b.getString(Constants.PRODUCT_STORE);
+            String fecha = "Valido hasta "+b.getString(Constants.PRODUCT_TO_DATE);
 
 
-            setProductData(productName, productPrice, productOldPrice, productImage,productStore);
+            setProductData(productName, productPrice, productOldPrice, productImage, productStore,fecha);
         }
 
     }
 
-    private void setProductData(String productName, String productPrice,String productOldPrice,String productImage, String productStore) {
+    private void setProductData(String productName, String productPrice, String productOldPrice, String productImage, String productStore, String date) {
 
         txtProductName.setText(productName);
-        txtProductStore.setText("Encuentralo en: "+productStore);
-        txtProductPrice.setText("$"+productPrice);
-        txtProductOldPrice.setText("$"+productOldPrice);
+        txtProductStore.setText("Encuentralo en: " + productStore);
+        txtProductPrice.setText("$" + productPrice);
+        txtProductOldPrice.setText("$" + productOldPrice);
+        txtFecha.setText(date);
         Picasso.with(this).load(productImage)
                 .placeholder(R.mipmap.ic_launcher)
                 .fit()
@@ -71,6 +77,6 @@ public class DetalleActivity extends AppCompatActivity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        Log.i(TAG,"Calling onNew intent in DetalleActivity");
+        Log.i(TAG, "Calling onNew intent in DetalleActivity");
     }
 }

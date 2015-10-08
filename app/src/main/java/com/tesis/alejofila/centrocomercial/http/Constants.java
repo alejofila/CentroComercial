@@ -37,6 +37,8 @@ public class Constants {
     public static final String PRODUCT_OLD_PRICE="product_old_price";
     public static final String PRODUCT_IMAGE="product_image";
     public static final String PRODUCT_STORE="store";
+    public static final String PRODUCT_SINCE_DATE = "since_date";
+    public static final String PRODUCT_TO_DATE = "to_date";
     public static final String NOTIFICATION_TYPE ="notification_type";
     public static final int NO_NOTIFICATION_TYPE = 9000;
     public static final int NOTIFICATION_TYPE_SINGLE =0 ;

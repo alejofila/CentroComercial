@@ -27,7 +27,6 @@ public class CustomPushReceiver extends ParsePushBroadcastReceiver {
     private NotificationUtils notificationUtils;
 
     private Intent parseIntent;
-    private Bundle extractedParams;
 
     public CustomPushReceiver() {
         super();
@@ -81,7 +80,7 @@ public class CustomPushReceiver extends ParsePushBroadcastReceiver {
         try {
             boolean isBackground = json.getBoolean("is_background");
             JSONObject data = json.getJSONObject("data");
-            extractedParams = JsonUtils.detailedJsonToBundle(data);
+            Bundle  extractedParams = JsonUtils.detailedJsonToBundle(data);
             String title = json.getString("titulo");
             String message = json.getString("message");
 
@@ -89,7 +88,9 @@ public class CustomPushReceiver extends ParsePushBroadcastReceiver {
 
             if (!isBackground) {
                 Intent resultIntent = new Intent(context, DetalleActivity.class);
+                resultIntent.putExtras(extractedParams);
                 showNotificationMessage(context, title, message, resultIntent);
+
             }
 
 
@@ -161,11 +162,7 @@ public class CustomPushReceiver extends ParsePushBroadcastReceiver {
     private void showNotificationMessage(Context context, String title, String message, Intent intent) {
 
         notificationUtils = new NotificationUtils(context);
-
-        intent.putExtras(extractedParams);
-
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
         notificationUtils.showNotificationMessage(title, message, intent);
     }
 }

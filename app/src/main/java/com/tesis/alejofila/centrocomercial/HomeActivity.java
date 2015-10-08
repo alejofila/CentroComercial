@@ -85,17 +85,17 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void verificaChannel(Interes interes) {
-
-
         switch (interes.getChannel()) {
             case InteresesFactory.INTERES_VIDEO_GAMES:
                 type1.setImageResource(interes.getIcono1());
                 interes.setActivado(true);
                 break;
+            /*
             case InteresesFactory.INTERES_TECNOLOGIA:
                 type2.setImageResource(interes.getIcono1());
                 interes.setActivado(true);
                 break;
+                */
             case InteresesFactory.INTERES_ROPA_MASCULINA:
                 type8.setImageResource(interes.getIcono1());
                 interes.setActivado(true);
