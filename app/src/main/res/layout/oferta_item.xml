@@ -1,45 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:padding="10dp">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:id="@+id/oferta_imagen"
-            android:src="@android:drawable/ic_popup_reminder"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:orientation="vertical"
-        android:padding="10dp">
+<android.support.v7.widget.CardView
+    android:id="@+id/oferta_card_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    card_view:cardElevation="8dp"
+    card_view:cardUseCompatPadding="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    card_view:cardBackgroundColor="@color/card_background_color"
+    android:layout_margin="5dp">
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
         <TextView
+            android:id="@+id/nombre_pruducto_oferta"
+            android:layout_alignParentTop="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/oferta_nombre"
-            android:text="nombre"
-            android:padding="5dp"
-            android:textSize="25sp"
-            android:textColor="@color/pressedButtonColor"
-
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/oferta_precio"
-            android:text="precio"
-            android:padding="5dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@android:color/white"
             android:textSize="20sp"
-            android:textColor="@color/input_register_bg"
             />
+        <ImageView
+            android:layout_below="@+id/nombre_pruducto_oferta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/imagen_oferta"
+            android:layout_marginBottom="5dp"/>
 
-    </LinearLayout>
-
-
-
-
-</LinearLayout>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

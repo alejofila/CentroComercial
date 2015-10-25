@@ -17,11 +17,10 @@ import com.parse.ParseInstallation;
 import com.parse.ParsePush;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
-import com.tesis.alejofila.centrocomercial.helper.OfertaAdapter;
+import com.tesis.alejofila.centrocomercial.app.MyApplication;
 import com.tesis.alejofila.centrocomercial.http.Constants;
 import com.tesis.alejofila.centrocomercial.model.Interes;
 import com.tesis.alejofila.centrocomercial.model.InteresesFactory;
-import com.tesis.alejofila.centrocomercial.model.Oferta;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -45,6 +44,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         setTitle(getIntent().getStringExtra(Constants.EMAIL));
         loadIcons();
         cargaIntereses();
+
     }
 
     private void loadIcons(){

@@ -1,18 +1,12 @@
 package com.tesis.alejofila.centrocomercial;
 
-import android.app.Dialog;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.Preference;
 import android.preference.PreferenceManager;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
-import android.text.InputType;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +19,7 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.RequestPasswordResetCallback;
 import com.tesis.alejofila.centrocomercial.auth.AccountAuthenticatorActivity;
+import com.tesis.alejofila.centrocomercial.db.MyDbHelper;
 import com.tesis.alejofila.centrocomercial.http.Constants;
 public class MainActivity extends AccountAuthenticatorActivity implements View.OnClickListener {
 
@@ -41,14 +36,9 @@ public class MainActivity extends AccountAuthenticatorActivity implements View.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if (parserVerifyWorkingSession()) {
-
-        }
-        else {
-
+        deleteDatabase(MyDbHelper.DATABASE_NAME);
+        if (!parserVerifyWorkingSession()) {
             setContentView(R.layout.activity_main);
-
             edtEmail = (EditText) findViewById(R.id.edtLogin);
             edtPassword = (EditText) findViewById(R.id.edtPassword);
             btnIniciar = (Button) findViewById(R.id.btnLogin);
@@ -71,16 +61,19 @@ public class MainActivity extends AccountAuthenticatorActivity implements View.O
     }
 
     private boolean parserVerifyWorkingSession() {
-
         ParseUser currentUser = ParseUser.getCurrentUser();
         if (currentUser != null) {
-            Intent i = new Intent(this, HomeActivity.class);
-            i.putExtra(Constants.EMAIL, currentUser.getEmail());
-            startActivity(i);
-            finish();
+            goToHomeActivity(currentUser.getEmail());
             return true;
         } else
             return false;
+    }
+
+    private void goToHomeActivity(String userEmail){
+        Intent i = new Intent(this, HomeActivity2.class);
+        i.putExtra(Constants.EMAIL, userEmail);
+        startActivity(i);
+        finish();
     }
 
 
@@ -175,7 +168,7 @@ public class MainActivity extends AccountAuthenticatorActivity implements View.O
         alert.show();
     }
 
-    private void parseLoginFunction(String email, String password) {
+    private void parseLoginFunction(final String email, final String password) {
 
         ParseUser.logInInBackground(
                 email,
@@ -183,9 +176,7 @@ public class MainActivity extends AccountAuthenticatorActivity implements View.O
                 new LogInCallback() {
                     public void done(ParseUser user, ParseException e) {
                         if (user != null) {
-                            Intent i = new Intent(MainActivity.this, HomeActivity.class);
-                            startActivity(i);
-                            finish();
+                            goToHomeActivity(email);
                         } else {
                             showDetailedError(e);
                         }

@@ -1,6 +1,5 @@
 package com.tesis.alejofila.centrocomercial.receiver;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,20 +9,23 @@ import com.parse.ParsePushBroadcastReceiver;
 import com.parse.ParseUser;
 import com.tesis.alejofila.centrocomercial.DetalleActivity;
 import com.tesis.alejofila.centrocomercial.HomeActivity;
+import com.tesis.alejofila.centrocomercial.db.CRUDManager;
 import com.tesis.alejofila.centrocomercial.helper.NotificationUtils;
 import com.tesis.alejofila.centrocomercial.http.Constants;
-import com.tesis.alejofila.centrocomercial.utils.JsonUtils;
+import com.tesis.alejofila.centrocomercial.model.Oferta;
+import com.tesis.alejofila.centrocomercial.model.Producto;
+import com.tesis.alejofila.centrocomercial.utils.ParsingUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Iterator;
 
 /**
  * Created by alejofila on 5/09/15.
  */
 public class CustomPushReceiver extends ParsePushBroadcastReceiver {
     private final String TAG = CustomPushReceiver.class.getSimpleName();
+    private Context mContext;
 
     private NotificationUtils notificationUtils;
 
@@ -36,6 +38,7 @@ public class CustomPushReceiver extends ParsePushBroadcastReceiver {
     @Override
     protected void onPushReceive(Context context, Intent intent) {
         super.onPushReceive(context, intent);
+        mContext = context;
         if (!isParseUserLogin())
             return;
         if (intent == null)
@@ -47,6 +50,7 @@ public class CustomPushReceiver extends ParsePushBroadcastReceiver {
 
             parseIntent = intent;
             int notificationType = determineNotificationType(json);
+
 
             switch (notificationType) {
                 case Constants.NOTIFICATION_TYPE_SINGLE:
@@ -66,10 +70,7 @@ public class CustomPushReceiver extends ParsePushBroadcastReceiver {
 
     private boolean isParseUserLogin() {
         ParseUser user = ParseUser.getCurrentUser();
-        if (user != null)
-            return true;
-        else
-            return false;
+        return user != null;
 
     }
 
@@ -81,13 +82,11 @@ public class CustomPushReceiver extends ParsePushBroadcastReceiver {
         try {
             boolean isBackground = json.getBoolean("is_background");
             JSONObject data = json.getJSONObject("data");
-            /**
-             * ESTO ES TEMPORAL REFACTORIZAR
-             */
-            String date  = json.getString(Constants.PRODUCT_TO_DATE);
 
-            Bundle extractedParams = JsonUtils.detailedJsonToBundle(data);
-            extractedParams.putString(Constants.PRODUCT_TO_DATE,date);
+            Bundle extractedParams = ParsingUtils.detailedJsonToBundle(data);
+
+            saveOfferLocally(extractedParams);
+
             String title = json.getString("titulo");
             String message = json.getString("message");
 
@@ -104,6 +103,39 @@ public class CustomPushReceiver extends ParsePushBroadcastReceiver {
             Log.e(TAG, "Push message json exception: 2" + e.getMessage());
         }
     }
+
+    /**
+     *
+     * @param info the incoming offer info
+     */
+    private void saveOfferLocally(Bundle info) {
+        //Filling product information
+        Producto producto = new Producto();
+        producto.setId(info.getInt(Constants.PRODUCT_ID));
+        producto.setNombre(info.getString(Constants.PRODUCT_NAME));
+        producto.setPrecio(info.getFloat(Constants.PRODUCT_PRICE));
+        producto.setRuta_imagen(info.getString(Constants.PRODUCT_IMAGE));
+        //Filling offer information
+        Oferta oferta =new Oferta();
+        oferta.setDescripcion(info.getString(Constants.OFFER_DESCRITION));
+        oferta.setFechaInicio(info.getString(Constants.OFFER_SINCE_DATE));
+        oferta.setFechaFinal(info.getString(Constants.OFFER_TO_DATE));
+        oferta.setTienda(info.getString(Constants.OFFER_STORE));
+        oferta.setProducto(producto);
+
+        CRUDManager crudManager = new CRUDManager(mContext);
+        if(!crudManager.productExits(producto)) {
+            Log.i(TAG,"El producto no existe sera agregado");
+            crudManager.insertProduct(producto);
+            crudManager.insertOffer(oferta);
+        }
+        else{
+            Log.i(TAG,"El producto si existe solo sera actualizada la oferta");
+            crudManager.updateOffer(oferta);
+        }
+
+    }
+
 
     private int determineNotificationType(JSONObject json) {
         try {

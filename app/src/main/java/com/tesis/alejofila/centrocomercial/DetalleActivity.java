@@ -11,34 +11,34 @@ import com.squareup.picasso.Picasso;
 import com.tesis.alejofila.centrocomercial.helper.CircleTransform;
 import com.tesis.alejofila.centrocomercial.http.Constants;
 
-import java.util.Iterator;
-
 /**
  * Created by alejofila on 6/09/15.
  */
 public class DetalleActivity extends AppCompatActivity {
 
     private static final String TAG = DetalleActivity.class.getSimpleName();
+    /**
+     * UI VARIABLES
+     */
+    private ImageView imagen;
+    private TextView txtProductName;
+    private TextView txtProductPrice;
+    private TextView txtOfferStore;
+    private TextView txtOfferDescription;
 
-    ImageView imagen;
-    TextView txtProductName;
-    TextView txtProductPrice;
-    TextView txtProductOldPrice;
-    TextView txtProductStore;
-    TextView txtFecha;
+    private TextView txtProductFecha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(TAG, "Calling onCreate in DetallecActivity");
-        this.setTitle("DETALLE ACTIVITY");
         setContentView(R.layout.activity_product_detail);
         imagen = (ImageView) findViewById(R.id.imagen_product_detail);
         txtProductName = (TextView) findViewById(R.id.txt_product_name);
         txtProductPrice = (TextView) findViewById(R.id.precio_product_detail);
-        txtProductOldPrice = (TextView) findViewById(R.id.original_precio_product_detail);
-        txtProductStore = (TextView) findViewById(R.id.store_product);
-        txtFecha        = (TextView) findViewById(R.id.txt_fecha_valida);
+        txtOfferStore = (TextView) findViewById(R.id.store_product);
+        txtOfferDescription = (TextView) findViewById(R.id.description_product_detail);
+        txtProductFecha        = (TextView) findViewById(R.id.txt_fecha_valida);
         getSupportActionBar().setHomeButtonEnabled(true);
 
 
@@ -47,26 +47,25 @@ public class DetalleActivity extends AppCompatActivity {
 
             String productName = b.getString(Constants.PRODUCT_NAME);
             String productImage = b.getString(Constants.PRODUCT_IMAGE);
-            String productPrice = b.getString(Constants.PRODUCT_PRICE);
-            String productOldPrice = b.getString(Constants.PRODUCT_OLD_PRICE);
-            String productStore = b.getString(Constants.PRODUCT_STORE);
-            String fecha = "Valido hasta "+b.getString(Constants.PRODUCT_TO_DATE);
-            setProductData(productName, productPrice, productOldPrice, productImage, productStore,fecha);
+            float productPrice = b.getFloat(Constants.PRODUCT_PRICE);
+            String productStore = b.getString(Constants.OFFER_STORE);
+            String offerDescription = b.getString(Constants.OFFER_DESCRITION);
+            String fecha = "Valido hasta "+b.getString(Constants.OFFER_TO_DATE);
+            setProductData(productName, productPrice, productImage, productStore,fecha, offerDescription);
         }
 
     }
 
-    private void setProductData(String productName, String productPrice, String productOldPrice, String productImage, String productStore, String date) {
-
+    private void setProductData(String productName, float productPrice, String productImage, String productStore, String date, String description) {
+        txtOfferDescription.setText(description);
         txtProductName.setText(productName);
-        txtProductStore.setText("Encuentralo en: " + productStore);
+        txtOfferStore.setText("Encuentralo en: " + productStore);
         txtProductPrice.setText("$" + productPrice);
-        txtProductOldPrice.setText("$" + productOldPrice);
-        txtFecha.setText(date);
+        txtProductFecha.setText(date);
         Picasso.with(this).load(productImage)
-                .placeholder(R.mipmap.ic_launcher)
+                .placeholder(R.mipmap.my_ic_launcher)
                 .fit()
-                .centerCrop()
+                .centerInside()
                 .transform(new CircleTransform())
                 .into(imagen);
 

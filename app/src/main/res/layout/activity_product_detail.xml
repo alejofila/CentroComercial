@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,8 +7,8 @@
     >
     <TextView
         android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.2"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:id="@+id/txt_product_name"
         android:text="Producto x"
         android:gravity="center"
@@ -19,46 +19,45 @@
 
     <TextView
         android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.1"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_product_name"
         android:text="Encuentralo en: "
         android:gravity="center"
         android:id="@+id/store_product"
         android:textColor="@color/lbl_name"
         android:textSize="18sp"/>
     <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.8"
-        android:layout_gravity="center"
+        android:layout_width="@dimen/imagen_product_detail_width"
+        android:layout_height="@dimen/imagen_product_detail_height"
+        android:layout_below="@+id/store_product"
+        android:layout_centerHorizontal="true"
         android:src="@drawable/common_signin_btn_icon_dark"
         android:layout_margin="30dp"
-
         android:id="@+id/imagen_product_detail"
         />
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        android:layout_weight="0.2"
-        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imagen_product_detail"
+        android:id="@+id/ll_precio"
+        android:layout_centerHorizontal="true"
         >
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:text="Precio Actual"
-            android:layout_weight="1"
+            android:id="@+id/lbl_precio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Precio"
             android:textSize="20sp"
-            android:gravity="center"
-             />
+            />
         <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            >
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/lbl_precio"
+            android:layout_alignBaseline="@+id/lbl_precio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
+                android:layout_height="wrap_content"
                 android:text="$40.000"
                 android:textSize="20sp"
                 android:gravity="center"
@@ -74,54 +73,30 @@
                 android:layout_toRightOf="@+id/precio_product_detail"
                 android:layout_alignBaseline="@+id/precio_product_detail"/>
         </RelativeLayout>
-
-
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        android:layout_weight="0.2"
-        >
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:text="Precio Orignal"
-            android:layout_weight="1"
-            android:textSize="20sp"
-            android:gravity="center"
-            />
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:text="$40.000"
-                android:textSize="20sp"
-                android:gravity="center"
-                android:id="@+id/original_precio_product_detail"
-                android:textColor="@color/bg_register" />
-
-
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:textSize="12sp"
-                android:text="IVA incluido"
-                android:layout_toRightOf="@+id/original_precio_product_detail"
-                android:layout_alignBaseline="@+id/original_precio_product_detail"/>
-
-        </RelativeLayout>
-
-    </LinearLayout>
+    
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Descripcion oferta"
+        android:layout_below="@id/ll_precio"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/lbl_descripcion"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/description_product_detail"
+        android:layout_below="@+id/lbl_descripcion"
+        android:text="Descripcion oferta"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        />
+
+
+    <TextView
+        android:layout_below="@+id/description_product_detail"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txt_fecha_valida"
@@ -131,6 +106,6 @@
         />
 
 
-</LinearLayout>
+</RelativeLayout>
 
 

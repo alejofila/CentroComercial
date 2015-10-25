@@ -4,37 +4,52 @@ package com.tesis.alejofila.centrocomercial.model;
  * Created by alejofila on 5/09/15.
  */
 public class Oferta {
-    private String producto;
-    private String precio;
-    private String imagen;
+    private String fechaInicio ;
+    private String fechaFinal;
+    private String descripcion;
+    private String tienda;
+    private Producto producto;
 
-    public Oferta(String producto, String precio , String imagen){
-        this.precio = precio;
-        this.imagen = imagen;
-        this.producto = producto;
+
+
+
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public String getProducto() {
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getTienda() {
+        return tienda;
+    }
+
+    public void setTienda(String tienda) {
+        this.tienda = tienda;
+    }
+
+    public Producto getProducto() {
         return producto;
     }
 
-    public void setProducto(String producto) {
+    public void setProducto(Producto producto) {
         this.producto = producto;
     }
 
-    public String getPrecio() {
-        return precio;
+    public String getFechaInicio() {
+        return fechaInicio;
     }
 
-    public void setPrecio(String precio) {
-        this.precio = precio;
+    public void setFechaInicio(String fechaInicio) {
+        this.fechaInicio = fechaInicio;
     }
 
-    public String getImagen() {
-        return imagen;
+    public String getFechaFinal() {
+        return fechaFinal;
     }
 
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
+    public void setFechaFinal(String fechaFinal) {
+        this.fechaFinal = fechaFinal;
     }
 }
