@@ -19,7 +19,6 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.RequestPasswordResetCallback;
 import com.tesis.alejofila.centrocomercial.auth.AccountAuthenticatorActivity;
-import com.tesis.alejofila.centrocomercial.db.MyDbHelper;
 import com.tesis.alejofila.centrocomercial.http.Constants;
 public class MainActivity extends AccountAuthenticatorActivity implements View.OnClickListener {
 
@@ -36,7 +35,6 @@ public class MainActivity extends AccountAuthenticatorActivity implements View.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        deleteDatabase(MyDbHelper.DATABASE_NAME);
         if (!parserVerifyWorkingSession()) {
             setContentView(R.layout.activity_main);
             edtEmail = (EditText) findViewById(R.id.edtLogin);

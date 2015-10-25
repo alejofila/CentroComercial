@@ -64,8 +64,6 @@ public class DetalleActivity extends AppCompatActivity {
         txtProductFecha.setText(date);
         Picasso.with(this).load(productImage)
                 .placeholder(R.mipmap.my_ic_launcher)
-                .fit()
-                .centerInside()
                 .transform(new CircleTransform())
                 .into(imagen);
 
