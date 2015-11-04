@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:id="@+id/txt_product_name"
+            android:text="Producto x"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textColor="@android:color/white"
+
+            />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_product_name"
+            android:text="Encuentralo en: "
+            android:gravity="center"
+            android:id="@+id/store_product"
+            android:textColor="@color/lbl_name"
+            android:textSize="18sp"/>
+        <ImageView
+            android:layout_width="@dimen/imagen_product_detail_width"
+            android:layout_height="@dimen/imagen_product_detail_height"
+            android:layout_below="@+id/store_product"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/common_signin_btn_icon_dark"
+            android:id="@+id/imagen_product_detail"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Descripcion oferta"
+            android:layout_toRightOf="@+id/imagen_product_detail"
+            android:layout_alignTop="@+id/imagen_product_detail"
+            android:textSize="20sp"
+            android:id="@+id/lbl_descripcion"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/description_product_detail"
+            android:layout_below="@+id/lbl_descripcion"
+            android:text="Descripcion oferta"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_toRightOf="@+id/imagen_product_detail"
+
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/imagen_product_detail"
+            android:layout_alignBottom="@+id/imagen_product_detail"
+            android:id="@+id/ll_precio"
+            android:layout_centerHorizontal="true"
+            >
+            <TextView
+                android:id="@+id/lbl_precio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Precio"
+                android:textSize="20sp"
+                />
+            <RelativeLayout
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/lbl_precio"
+                android:layout_alignBaseline="@+id/lbl_precio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$40.000"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:textColor="@color/accent"
+                    android:id="@+id/precio_product_detail"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:textSize="12sp"
+                    android:text="IVA incluido"
+                    android:layout_below="@+id/precio_product_detail"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+
+
+
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_fecha_valida"
+            android:text="Valido hasta"
+            android:textSize="20sp"
+            android:layout_alignBottom="@+id/imagen_product_detail"
+            android:layout_toRightOf="@+id/imagen_product_detail"
+            />
+
+
+    </RelativeLayout>
+
+</ScrollView>

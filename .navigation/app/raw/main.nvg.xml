@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<navigationModel
+  ns = "http://schemas.android.com?import=com.android.tools.idea.editors.navigation.model.*">
+  <locations  
+    class = "java.util.ArrayList">
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "com.tesis.alejofila.centrocomercial.RegisterActivity"/>
+      <point      
+        x = "1564"      
+        y = "-36"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "com.tesis.alejofila.centrocomercial.HomeActivity"/>
+      <point      
+        x = "2724"      
+        y = "285"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "com.tesis.alejofila.centrocomercial.HomeActivity2"/>
+      <point      
+        x = "2516"      
+        y = "324"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "com.tesis.alejofila.centrocomercial.MainActivity"/>
+      <point      
+        x = "1713"      
+        y = "837"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "com.tesis.alejofila.centrocomercial.DetalleActivity"/>
+      <point      
+        x = "333"      
+        y = "266"/>
+    </statePointEntry>
+  </locations>
+</navigationModel>

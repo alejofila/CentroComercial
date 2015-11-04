@@ -24,12 +24,12 @@ import org.json.JSONObject;
  * Created by alejofila on 5/09/15.
  */
 public class CustomPushReceiver extends ParsePushBroadcastReceiver {
-    private final String TAG = CustomPushReceiver.class.getSimpleName();
     private Context mContext;
 
     private NotificationUtils notificationUtils;
 
     private Intent parseIntent;
+    private static final String TAG = CustomPushReceiver.class.getSimpleName();
 
     public CustomPushReceiver() {
         super();
@@ -84,6 +84,7 @@ public class CustomPushReceiver extends ParsePushBroadcastReceiver {
             JSONObject data = json.getJSONObject("data");
 
             Bundle extractedParams = ParsingUtils.detailedJsonToBundle(data);
+            Log.i(TAG,"Incoming JSON "+extractedParams.toString());
 
             saveOfferLocally(extractedParams);
 

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 
 import com.tesis.alejofila.centrocomercial.adapter.MyFragmentPagerAdapter;
@@ -27,6 +28,7 @@ public class HomeActivity2  extends AppCompatActivity{
      * UI_VARIABLES
      */
     private ViewPager viewPager;
+    private Toolbar toolbar;
 
 
     /**
@@ -41,9 +43,12 @@ public class HomeActivity2  extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setTitle(getIntent().getStringExtra(Constants.EMAIL));
         setContentView(R.layout.activity_home_2);
+        toolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(toolbar);
         viewPager = (ViewPager) this.findViewById(R.id.home_pager);
         viewPager.setAdapter(new MyFragmentPagerAdapter(getSupportFragmentManager()));
         TabLayout tabLayout = (TabLayout)this.findViewById(R.id.slidingTabs);
         tabLayout.setupWithViewPager(viewPager);
+
     }
 }

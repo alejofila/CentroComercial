@@ -39,7 +39,7 @@ public class DetalleActivity extends AppCompatActivity {
         txtOfferStore = (TextView) findViewById(R.id.store_product);
         txtOfferDescription = (TextView) findViewById(R.id.description_product_detail);
         txtProductFecha        = (TextView) findViewById(R.id.txt_fecha_valida);
-        getSupportActionBar().setHomeButtonEnabled(true);
+        //getSupportActionBar().setHomeButtonEnabled(true);
 
 
         if (getIntent() != null) {

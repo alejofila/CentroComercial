@@ -1,0 +1,4 @@
+SELECT nombre  ,precio ,imagen  ,
+                 descripcion   , fecha_final ,  tienda
+                FROM oferta  ,  producto
+                WHERE  producto.id =oferta.id_producto AND fecha_final  <= Date("2015-11-3");

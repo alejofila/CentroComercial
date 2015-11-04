@@ -72,15 +72,13 @@ public class CRUDManager {
     }
 
     public List<Oferta> listOffers(String currentDate) {
-        Log.i(TAG,"current date: "+currentDate);
+        Log.i(TAG, "current date: " + currentDate);
         String sqlString = "SELECT " + TablesDB.Producto.CN_NOMBRE + " , " + TablesDB.Producto.CN_PRECIO + " , " + TablesDB.Producto.CN_IMAGEN + " ,"
                 + TablesDB.Oferta.CN_DESCRIPCION + " , " + TablesDB.Oferta.CN_FECHA_FINAL + " , " + TablesDB.Oferta.CN_TIENDA
                 + " FROM " + TablesDB.Oferta.TABLE_NAME + " , " + TablesDB.Producto.TABLE_NAME
                 + " WHERE " + TablesDB.Producto.TABLE_NAME + "." + TablesDB.Producto.CN_ID + " = " + TablesDB.Oferta.TABLE_NAME + "." + TablesDB.Oferta.CN_ID_PRODUCTO
-                + " AND " + TablesDB.Oferta.CN_FECHA_FINAL + " >= Date('"+currentDate+"')"
-        ;
-
-
+                + " AND " + TablesDB.Oferta.CN_FECHA_FINAL + " >= Date('now')"
+                + ";";
         Log.d(TAG, "Sqlite to execute:  " + sqlString);
 
         Cursor cursorOfertas = db.rawQuery(sqlString, null);
