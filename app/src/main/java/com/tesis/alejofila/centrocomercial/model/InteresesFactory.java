@@ -9,8 +9,8 @@ public class InteresesFactory {
 
     public static final String INTERES_VIDEO_GAMES = "video_games";
     public static final String INTERES_ROPA_MASCULINA = "ropa_masculina";
-    public static final String INTERES_COMIDA_RAPIDA = "comida_rapida";
-    public static final String INTERES_JOYAS = "joyas";
+    public static final String INTERES_COMIDA_RAPIDA = "comida";
+    public static final String INTERES_ACCESORIOS = "accesorios";
     public static final String INTERES_ZAPATOS_HOMBRE = "zapatos_hombre";
     public static final String INTERES_ZAPATOS_MUJER = "zapatos_mujer";
     public static final String INTERES_TECNOLOGIA = "tecnologia";
@@ -26,8 +26,8 @@ public class InteresesFactory {
                 return new Interes(INTERES_ROPA_MASCULINA, R.drawable.ic_type_clothes_2, R.drawable.ic_type_clothes);
             case INTERES_COMIDA_RAPIDA:
                 return new Interes(INTERES_COMIDA_RAPIDA, R.drawable.ic_type_fast_food_2, R.drawable.ic_type_fast_food);
-            case INTERES_JOYAS:
-                return new Interes(INTERES_JOYAS, R.drawable.ic_type_jewel_2, R.drawable.ic_type_jewel);
+            case INTERES_ACCESORIOS:
+                return new Interes(INTERES_ACCESORIOS, R.drawable.ic_type_jewel_2, R.drawable.ic_type_jewel);
             case INTERES_ZAPATOS_HOMBRE:
                 return new Interes(INTERES_ZAPATOS_HOMBRE, R.drawable.ic_type_men_shoe_2, R.drawable.ic_type_men_shoe);
             case INTERES_TECNOLOGIA:

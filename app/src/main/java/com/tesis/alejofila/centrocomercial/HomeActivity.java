@@ -102,7 +102,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 types.get(2).setImageResource(interes.getIcono2());
                 interes.setActivado(true);
                 break;
-            case InteresesFactory.INTERES_JOYAS:
+            case InteresesFactory.INTERES_ACCESORIOS:
                 types.get(3).setImageResource(interes.getIcono2());
                 interes.setActivado(true);
                 break;
@@ -179,7 +179,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 type_8Function(InteresesFactory.INTERES_COMIDA_RAPIDA, types.get(2));
                 break;
             case R.id.type_4:
-                type_8Function(InteresesFactory.INTERES_JOYAS, types.get(3));
+                type_8Function(InteresesFactory.INTERES_ACCESORIOS, types.get(3));
                 break;
             case R.id.type_5:
                 type_8Function(InteresesFactory.INTERES_ZAPATOS_MUJER, types.get(4));

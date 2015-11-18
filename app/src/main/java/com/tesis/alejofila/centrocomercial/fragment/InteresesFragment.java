@@ -105,7 +105,7 @@ public class InteresesFragment extends Fragment implements View.OnClickListener 
                 types.get(2).setImageResource(interes.getIcono2());
                 interes.setActivado(true);
                 break;
-            case InteresesFactory.INTERES_JOYAS:
+            case InteresesFactory.INTERES_ACCESORIOS:
                 types.get(3).setImageResource(interes.getIcono2());
                 interes.setActivado(true);
                 break;
@@ -148,7 +148,7 @@ public class InteresesFragment extends Fragment implements View.OnClickListener 
                 activaDesactivaInteres(InteresesFactory.INTERES_COMIDA_RAPIDA, types.get(2));
                 break;
             case R.id.type_4:
-                activaDesactivaInteres(InteresesFactory.INTERES_JOYAS, types.get(3));
+                activaDesactivaInteres(InteresesFactory.INTERES_ACCESORIOS, types.get(3));
                 break;
             case R.id.type_5:
                 activaDesactivaInteres(InteresesFactory.INTERES_ZAPATOS_MUJER, types.get(4));
