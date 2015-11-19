@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.kogitune.activity_transition.ActivityTransitionLauncher;
 import com.tesis.alejofila.centrocomercial.DetalleActivity;
 import com.tesis.alejofila.centrocomercial.R;
 import com.tesis.alejofila.centrocomercial.adapter.OfertaAdapter;
@@ -48,11 +49,12 @@ public class UltimasOfertasFragment extends Fragment {
 
     OfertaAdapter.OnOfertaListaClicked mOnOfertaListaClicked = new OfertaAdapter.OnOfertaListaClicked() {
         @Override
-        public void onOfertaClicked(Oferta oferta) {
+        public void onOfertaClicked(Oferta oferta,View view) {
             Bundle args = ParsingUtils.ofertaToBundle(oferta);
             Intent intent = new Intent(getActivity(), DetalleActivity.class);
             intent.putExtras(args);
-            startActivity(intent);
+            ActivityTransitionLauncher.with(getActivity()).from(view).launch(intent);
+
         }
     };
 }

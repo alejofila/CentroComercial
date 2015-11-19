@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.kogitune.activity_transition.ActivityTransition;
 import com.squareup.picasso.Picasso;
 import com.tesis.alejofila.centrocomercial.helper.CircleTransform;
 import com.tesis.alejofila.centrocomercial.http.Constants;
@@ -33,13 +35,15 @@ public class DetalleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.i(TAG, "Calling onCreate in DetallecActivity");
         setContentView(R.layout.activity_product_detail);
+        GridLayout gridInfo = (GridLayout)findViewById(R.id.grid_info);
+        ActivityTransition.with(getIntent()).to(gridInfo).start(savedInstanceState);
+
         imagen = (ImageView) findViewById(R.id.imagen_product_detail);
         txtProductName = (TextView) findViewById(R.id.txt_product_name);
         txtProductPrice = (TextView) findViewById(R.id.precio_product_detail);
         txtOfferStore = (TextView) findViewById(R.id.store_product);
         txtOfferDescription = (TextView) findViewById(R.id.description_product_detail);
         txtProductFecha        = (TextView) findViewById(R.id.txt_fecha_valida);
-        //getSupportActionBar().setHomeButtonEnabled(true);
 
 
         if (getIntent() != null) {

@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 
+import com.kogitune.activity_transition.ActivityTransition;
 import com.tesis.alejofila.centrocomercial.adapter.MyFragmentPagerAdapter;
 import com.tesis.alejofila.centrocomercial.http.Constants;
 import com.tesis.alejofila.centrocomercial.model.Interes;
@@ -44,10 +45,12 @@ public class HomeActivity2  extends AppCompatActivity{
         setTitle(getIntent().getStringExtra(Constants.EMAIL));
         setContentView(R.layout.activity_home_2);
         toolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(toolbar);
         viewPager = (ViewPager) this.findViewById(R.id.home_pager);
-        viewPager.setAdapter(new MyFragmentPagerAdapter(getSupportFragmentManager()));
         TabLayout tabLayout = (TabLayout)this.findViewById(R.id.slidingTabs);
+        ActivityTransition.with(getIntent()).to(viewPager).start(savedInstanceState);
+
+        setSupportActionBar(toolbar);
+        viewPager.setAdapter(new MyFragmentPagerAdapter(getSupportFragmentManager()));
         tabLayout.setupWithViewPager(viewPager);
 
     }

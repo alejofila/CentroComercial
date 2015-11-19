@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.kogitune.activity_transition.ActivityTransitionLauncher;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -35,8 +36,9 @@ public class MainActivity extends AccountAuthenticatorActivity implements View.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
         if (!parserVerifyWorkingSession()) {
-            setContentView(R.layout.activity_main);
+
             edtEmail = (EditText) findViewById(R.id.edtLogin);
             edtPassword = (EditText) findViewById(R.id.edtPassword);
             btnIniciar = (Button) findViewById(R.id.btnLogin);
@@ -68,9 +70,11 @@ public class MainActivity extends AccountAuthenticatorActivity implements View.O
     }
 
     private void goToHomeActivity(String userEmail){
-        Intent i = new Intent(this, HomeActivity2.class);
-        i.putExtra(Constants.EMAIL, userEmail);
-        startActivity(i);
+        Intent intent = new Intent(this, HomeActivity2.class);
+        intent.putExtra(Constants.EMAIL, userEmail);
+        btnIniciar = (Button) findViewById(R.id.btnLogin);
+        ActivityTransitionLauncher.with(this).from(btnIniciar).launch(intent);
+
         finish();
     }
 

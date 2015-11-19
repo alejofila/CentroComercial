@@ -43,7 +43,7 @@ public class OfertaAdapter extends RecyclerView.Adapter<OfertaAdapter.OfertaView
     }
 
     @Override
-    public void onBindViewHolder(OfertaViewHolder holder, int position) {
+    public void onBindViewHolder(final OfertaViewHolder holder, int position) {
         final Oferta oferta= ofertas.get(position);
         holder.txtNombre.setText(oferta.getProducto().getNombre());
         Picasso.with(context)
@@ -53,7 +53,7 @@ public class OfertaAdapter extends RecyclerView.Adapter<OfertaAdapter.OfertaView
         holder.cardContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mOnOfertaListaClicked.onOfertaClicked(oferta);
+                mOnOfertaListaClicked.onOfertaClicked(oferta,holder.cardContainer);
             }
         });
 
@@ -80,7 +80,7 @@ public class OfertaAdapter extends RecyclerView.Adapter<OfertaAdapter.OfertaView
     }
 
     public interface OnOfertaListaClicked{
-        void onOfertaClicked(Oferta oferta);
+        void onOfertaClicked(Oferta oferta,View view);
     }
     private OnOfertaListaClicked mOnOfertaListaClicked;
 
