@@ -42,7 +42,7 @@ public class NotificationUtils {
 
         if (isAppIsInBackground(mContext)) {
             // notification icon
-            int icon = R.mipmap.my_ic_launcher;
+            int icon = R.mipmap.ic_launcher;
 
             int mNotificationId = AppConfig.NOTIFICATION_ID;
 
