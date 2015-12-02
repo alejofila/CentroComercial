@@ -54,7 +54,7 @@ public class DetalleActivity extends AppCompatActivity {
             float productPrice = b.getFloat(Constants.PRODUCT_PRICE);
             String productStore = b.getString(Constants.OFFER_STORE);
             String offerDescription = b.getString(Constants.OFFER_DESCRITION);
-            String fecha = "Valido hasta "+b.getString(Constants.OFFER_TO_DATE);
+            String fecha = b.getString(Constants.OFFER_TO_DATE);
             setProductData(productName, productPrice, productImage, productStore,fecha, offerDescription);
         }
 
@@ -70,6 +70,7 @@ public class DetalleActivity extends AppCompatActivity {
                 .placeholder(R.mipmap.my_ic_launcher)
                 .transform(new CircleTransform())
                 .into(imagen);
+        Log.d(TAG,"Esta es la URL de la imagen "+productImage);
 
     }
 
