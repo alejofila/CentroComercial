@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.tesis.alejofila.centrocomercial.R;
 import com.tesis.alejofila.centrocomercial.model.Oferta;
+import com.tesis.alejofila.centrocomercial.utils.BitMapTransform;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,8 +47,12 @@ public class OfertaAdapter extends RecyclerView.Adapter<OfertaAdapter.OfertaView
     public void onBindViewHolder(final OfertaViewHolder holder, int position) {
         final Oferta oferta= ofertas.get(position);
         holder.txtNombre.setText(oferta.getProducto().getNombre());
-        Picasso.with(context)
-                .load(oferta.getProducto().getRuta_imagen())
+        
+        int size = (int) Math.ceil(Math.sqrt(600 * 400));
+        Picasso.with(context).load(oferta.getProducto().getRuta_imagen())
+                .transform(new BitMapTransform(600, 400))
+                .resize(size, size)
+                .centerInside()
                 .into(holder.imgProducto);
 
         holder.cardContainer.setOnClickListener(new View.OnClickListener() {
